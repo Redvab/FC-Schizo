@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FC Schizo| official Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC Schizo | Official Website</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <section>
+
+<header>
     <h1>FC Schizo</h1>
-    <p>We don't hate each other because we're a big family. WE ARE FC Schizo!</p>
-    -Andrey Smaev.
-    </section>
-
-    <img src="fcschizo.jpg" alt="FC Shizo" width="300">
-
-<h2>Navigation</h2>    
     <nav>
-        <ul>
-            <li><a href="team.html">Our players</a></li>
-        </ul>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Players</a>
     </nav>
+</header>
+
+<section class="video-hero">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="video/stadium.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-overlay">
+        <h1>FC Schizo</h1>
+    </div>
+</section>
+
+<section class="club-intro">
+    <img src="bilder/fcschizo.jpg" alt="FC Schizo Logo" class="club-logo">
+    
+    <p class="club-quote">
+        "We don't hate each other because we're a big family.  
+        WE ARE FC Schizo!"
+    </p>
+
+    <p class="quote-author">– Andrey Smaev</p>
+</section>
+
+
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img">
+</div>
+
+
+<footer>
+    <p>© 2026 FC Schizo | Official Website</p>
+</footer>
+
 </body>
 </html>
