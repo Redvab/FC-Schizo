@@ -1,55 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FC Schizo | Official Website</title>
-<link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Schizo | official web site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: #0a0a0a; /* Чистый глубокий черный фон */
+            color: #ffffff; /* Белый текст для контраста */
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Шапка сайта (Навигация) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0));
+        }
+
+        .logo-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 2px;
+            color: #ff6600; /* Логотип ярко-оранжевый */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: #ffffff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .auth-buttons a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .auth-buttons a:last-child {
+            color: #ff6600;
+        }
+
+        .auth-buttons a:hover {
+            color: #ffffff;
+        }
+
+        /* Главный баннер */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 50px 100px 50px;
+            background: url('div3.jpg') no-repeat center center/cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #0a0a0a 10%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.2) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 75px;
+            line-height: 0.9;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .read-more {
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #ffffff;
+        }
+
+        /* СЕКЦИЯ КОМАНДЫ (TEAM SECTION) */
+        .team-container {
+            padding: 60px 50px;
+            background-color: #0a0a0a;
+        }
+
+        .position-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: #ffffff;
+            border-left: 5px solid #ff6600;
+            padding-left: 15px;
+        }
+
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Стильные спортивные карточки */
+        .player-card {
+            background: linear-gradient(135deg, #141414 0%, #0d0d0d 100%);
+            border: 1px solid #222;
+            border-radius: 12px;
+            position: relative;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6600;
+            box-shadow: 0 10px 20px rgba(255, 102, 0, 0.15);
+        }
+
+        /* Задний фон карточки для фото силуэта/игрока */
+        .player-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* По умолчанию ставим темный силуэт, заменяется реальным фото */
+            background: url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=400') no-repeat center bottom/cover;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+
+        .player-card:hover .player-photo {
+            opacity: 0.5; /* Фото становится ярче при наведении */
+        }
+
+        /* Огромный игровой номер в углу */
+        .player-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+
+        .player-card:hover .player-number {
+            color: #ff6600; /* Номер загорается оранжевым */
+        }
+
+        /* Текстовый блок игрока */
+        .player-info {
+            position: relative;
+            z-index: 3;
+            text-transform: uppercase;
+        }
+
+        .player-firstname {
+            font-size: 13px;
+            font-weight: 400;
+            color: #888;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .player-lastname {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: #fff;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .player-underline {
+            width: 30px;
+            height: 3px;
+            background-color: #ff6600;
+            margin-top: 10px;
+            transition: width 0.3s;
+        }
+
+        .player-card:hover .player-underline {
+            width: 60px;
+        }
+    </style>
+</head>
 <body>
 
-<header>
-    <h1>FC Schizo</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="team.html">Our Players</a>
-    </nav>
-</header>
+    <header>
+        <div class="logo-menu">
+            <a href="#" class="logo">FC SCHIZO</a>
+            <img src="bilder/logo.jpg" alt="FC Schizo Logo" style="max-height: 40px; width: auto; object-fit: contain;">
+            <nav>
+                <ul>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">SCHIZO TV</a></li>
+                    <li><a href="#">Next Games</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="auth-buttons">
+            <a href="#">Sign in</a>
+            <a href="#">Tickets</a>
+            <a href="#">Shop</a>
+        </div>
+    </header>
 
-<section class="video-hero">
-    <video autoplay muted loop playsinline class="bg-video">
-        <source src="stadium.mp4" type="video/mp4">
-    </video>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>FC SCHIZO got promoted to DIV 3</h1>
+            <a href="#" class="read-more">Read about this ›</a>
+        </div>
+    </section>
 
-    <div class="video-overlay">
-        <h1>FC Schizo</h1>
+    <div class="team-container" id="team">
+        
+        <h2 class="position-title">Midfielders</h2>
+        <div class="player-grid">
+            
+            <div class="player-card">
+                <div class="player-photo" style="background-image: url('popic.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">21</div>
+                <div class="player-info">
+                    <span class="player-firstname">Nikola</span>
+                    <span class="player-lastname">Popic</span>
+                    <div class="player-underline"></div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo" style="background-image: url('jabari.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">64</div>
+                <div class="player-info">
+                    <span class="player-firstname">Jabari</span>
+                    <span class="player-lastname">Mwangi</span>
+                    <div class="player-underline"></div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo" style="background-image: url('bilder/trafford.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">10</div>
+                <div class="player-info">
+                    <span class="player-firstname">Kevin</span>
+                    <span class="player-lastname">Diaz</span>
+                    <div class="player-underline"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="position-title">Forwards</h2>
+        <div class="player-grid">
+            
+            <div class="player-card">
+                <div class="player-photo" style="background-image: url('smaev.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">67</div>
+                <div class="player-info">
+                    <span class="player-firstname">Andrey</span>
+                    <span class="player-lastname">Smaev</span>
+                    <div class="player-underline"></div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo" style="background-image: url('bilder/haaland.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">9</div>
+                <div class="player-info">
+                    <span class="player-firstname">Erling</span>
+                    <span class="player-lastname">Haaland</span>
+                    <div class="player-underline"></div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-</section>
-
-<section class="club-intro">
-    <img src="fcschizo.jpg" alt="FC Schizo Logo" class="club-logo">
-    
-    <p class="club-quote">
-        "We don't hate each other because we're a big family.  
-        WE ARE FC Schizo!"
-    </p>
-
-    <p class="quote-author">– Andrey Smaev</p>
-</section>
-
-
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-img" id="lightbox-img">
-</div>
-
-
-<footer>
-    <p>© 2026 FC Schizo | Official Website</p>
-</footer>
 
 </body>
 </html>
