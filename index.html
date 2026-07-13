@@ -150,6 +150,111 @@
             color: #ffffff;
         }
 
+        /* СЕКЦИЯ НОВОСТЕЙ (NEWS SECTION) */
+        .news-container {
+            padding: 80px 50px 40px 50px;
+            background-color: #0a0a0a;
+        }
+
+        .news-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 55px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        /* Теги фильтрации новостей */
+        .news-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: #141414;
+            color: #ffffff;
+            border: 1px solid #222;
+            padding: 8px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #ff6600;
+            border-color: #ff6600;
+            color: #ffffff;
+        }
+
+        /* Сетка для новостей */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .news-img-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid #1c1c1c;
+            position: relative;
+        }
+
+        .news-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-img {
+            transform: scale(1.05); /* Легкий зум картинки при наведении */
+        }
+
+        .news-category {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ff6600; /* Оранжевый тэг над заголовком */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .news-card:hover .news-title {
+            color: #ff6600; /* Заголовок подсвечивается оранжевым */
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #666;
+        }
+
         /* СЕКЦИЯ КОМАНДЫ (TEAM SECTION) */
         .team-container {
             padding: 60px 50px;
@@ -174,7 +279,6 @@
             margin-bottom: 60px;
         }
 
-        /* Стильные спортивные карточки */
         .player-card {
             background: linear-gradient(135deg, #141414 0%, #0d0d0d 100%);
             border: 1px solid #222;
@@ -196,25 +300,22 @@
             box-shadow: 0 10px 20px rgba(255, 102, 0, 0.15);
         }
 
-        /* Задний фон карточки для фото силуэта/игрока */
         .player-photo {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* По умолчанию ставим темный силуэт, заменяется реальным фото */
-            background: url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=400') no-repeat center bottom/cover;
+            background: url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=400') no-repeat center center/cover;
             opacity: 0.3;
             transition: opacity 0.3s;
             z-index: 1;
         }
 
         .player-card:hover .player-photo {
-            opacity: 0.5; /* Фото становится ярче при наведении */
+            opacity: 0.5;
         }
 
-        /* Огромный игровой номер в углу */
         .player-number {
             position: absolute;
             top: 15px;
@@ -228,10 +329,9 @@
         }
 
         .player-card:hover .player-number {
-            color: #ff6600; /* Номер загорается оранжевым */
+            color: #ff6600;
         }
 
-        /* Текстовый блок игрока */
         .player-info {
             position: relative;
             z-index: 3;
@@ -266,6 +366,70 @@
         .player-card:hover .player-underline {
             width: 60px;
         }
+
+        /* --- АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА --- */
+        @media (max-width: 992px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+                background: #0a0a0a;
+            }
+            
+            .logo-menu {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .auth-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .hero {
+                height: 70vh;
+                padding: 0 20px 50px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 45px;
+            }
+
+            .news-container, .team-container {
+                padding: 40px 20px;
+            }
+
+            .news-header {
+                font-size: 40px;
+            }
+
+            .position-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-grid {
+                grid-template-columns: 1fr; /* На мелких экранах новости идут по одной в ряд */
+            }
+
+            .player-grid {
+                grid-template-columns: 1fr; /* Игроки тоже выстраиваются в одну колонку */
+            }
+
+            .player-card {
+                height: 400px; /* Немного увеличим высоту для удобства на смартфонах */
+            }
+        }
     </style>
 </head>
 <body>
@@ -276,7 +440,7 @@
             <img src="logo.jpg" alt="FC Schizo Logo" style="max-height: 40px; width: auto; object-fit: contain;">
             <nav>
                 <ul>
-                    <li><a href="#">News</a></li>
+                    <li><a href="#news">News</a></li>
                     <li><a href="#">SCHIZO TV</a></li>
                     <li><a href="#">Next Games</a></li>
                     <li><a href="#team">Team</a></li>
@@ -296,6 +460,48 @@
             <a href="#" class="read-more">Read about this ›</a>
         </div>
     </section>
+
+    <div class="news-container" id="news">
+        <h2 class="news-header">Latest News</h2>
+        
+        <div class="news-filters">
+            <button class="filter-btn active">All News</button>
+            <button class="filter-btn">Transfers</button>
+            <button class="filter-btn">Match Reports</button>
+            <button class="filter-btn">Club News</button>
+        </div>
+
+        <div class="news-grid">
+            
+            <a href="#" class="news-card">
+                <div class="news-img-wrapper">
+                    <img src="aleks.jpg" alt="News 1" class="news-img">
+                </div>
+                <span class="news-category">Transfers</span>
+                <h3 class="news-title">New Transfer: New Player from Bulgaria joins FC Schizo</h3>
+                <span class="news-date">June 6, 2026</span>
+            </a>
+
+            <a href="#" class="news-card">
+                <div class="news-img-wrapper">
+                    <img src="rekord.jpg" alt="News 2" class="news-img">
+                </div>
+                <span class="news-category">Match Reports</span>
+                <h3 class="news-title">Smaev set a new rekord after scoring 11 Goals in one game</h3>
+                <span class="news-date">Jul 12, 2026</span>
+            </a>
+
+            <a href="#" class="news-card">
+                <div class="news-img-wrapper">
+                    <img src="free.jpg" alt="News 3" class="news-img">
+                </div>
+                <span class="news-category">Club News</span>
+                <h3 class="news-title">Popic can't stop scoring free kicks!</h3>
+                <span class="news-date">Jul 10, 2026</span>
+            </a>
+
+        </div>
+    </div>
 
     <div class="team-container" id="team">
         
@@ -323,8 +529,8 @@
             </div>
 
             <div class="player-card">
-                <div class="player-photo" style="background-image: url('bilder/trafford.jpg'); opacity: 0.6;"></div>
-                <div class="player-number">10</div>
+                <div class="player-photo" style="background-image: url('kevin.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">17</div>
                 <div class="player-info">
                     <span class="player-firstname">Kevin</span>
                     <span class="player-lastname">Diaz</span>
@@ -348,11 +554,11 @@
             </div>
 
             <div class="player-card">
-                <div class="player-photo" style="background-image: url('bilder/haaland.jpg'); opacity: 0.6;"></div>
-                <div class="player-number">9</div>
+                <div class="player-photo" style="background-image: url('aleksander.jpg'); opacity: 0.6;"></div>
+                <div class="player-number">10</div>
                 <div class="player-info">
-                    <span class="player-firstname">Erling</span>
-                    <span class="player-lastname">Haaland</span>
+                    <span class="player-firstname">Aleksander</span>
+                    <span class="player-lastname">Kanchev</span>
                     <div class="player-underline"></div>
                 </div>
             </div>
