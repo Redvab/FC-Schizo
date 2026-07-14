@@ -820,6 +820,20 @@
             
             <div class="news-card">
                 <div class="news-img-wrapper">
+                    <img src="potential.jpg" alt="Aleks Kanchev" class="news-img">
+                </div>
+                <span class="news-category">Transfers</span>
+                <h3 class="news-title">Aleks Kanchev: Potential Bust or Future Club Legend?</h3>
+                <span class="news-date">July 13, 2026</span>
+                
+                <div class="news-full-text">
+                    <p>As FC Schizo secures its historical promotion to Division 3, analysts and fans have begun questioning the overall impact of winger Aleksander Kanchev. While the Bulgarian talent brings undeniable speed and high individual flair to the flank, some critics are raising concerns about his tactical consistency on the big stage.</p>
+                    <p>Labelled by some as a "potential bust" due to a couple of quiet games during the high-pressure promotion run, Kanchev still maintains the full backing of his teammates. "He's an explosive player. In Division 3, defenses are tighter, but Aleks has all the qualities to silence the doubters," Popic stated in a recent interview. Only time will tell if Kanchev will crack under pressure or prove to be the bargain of the season.</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img-wrapper">
                     <img src="aleks.jpg" alt="News 1" class="news-img">
                 </div>
                 <span class="news-category">Transfers</span>
@@ -868,8 +882,8 @@
         <h2 class="position-title">Goalkeepers</h2>
         <div class="player-grid">
             <div class="player-card" data-position="Goalkeeper"
-                 data-height="195 cm" data-weight="90 kg" data-foot="Right"
-                 data-apps="483" data-goals="0" data-assists="1" data-rating="7.2"
+                 data-height="188 cm" data-weight="92 kg" data-foot="Right"
+                 data-apps="436" data-goals="0" data-assists="1" data-rating="7.2"
                  data-stat1="88" data-stat2="45" data-stat3="91" data-stat4="52"
                  data-lbl1="Reflexes" data-lbl2="Passing" data-lbl3="Positioning" data-lbl4="Speed">
                 <div class="player-photo" style="background-image: url('khabib.jpg'); opacity: 0.6;"></div>
@@ -889,7 +903,7 @@
         <div class="player-grid">
             <div class="player-card" data-position="Defender"
                  data-height="191 cm" data-weight="88 kg" data-foot="Right"
-                 data-apps="636" data-goals="3" data-assists="4" data-rating="7.8"
+                 data-apps="618" data-goals="3" data-assists="4" data-rating="7.8"
                  data-stat1="44" data-stat2="78" data-stat3="89" data-stat4="92"
                  data-lbl1="Shooting" data-lbl2="Passing" data-lbl3="Defending" data-lbl4="Physical">
                 <div class="player-photo" style="background-image: url('germain.jpg'); opacity: 0.6;"></div>
@@ -908,7 +922,7 @@
         <h2 class="position-title">Midfielders</h2>
         <div class="player-grid">
             <div class="player-card" data-position="Midfielder"
-                 data-height="183 cm" data-weight="78 kg" data-foot="Left"
+                 data-height="183 cm" data-weight="82 kg" data-foot="Left"
                  data-apps="132" data-goals="136" data-assists="86" data-rating="7.8"
                  data-stat1="82" data-stat2="93" data-stat3="74" data-stat4="78"
                  data-lbl1="Shooting" data-lbl2="Passing" data-lbl3="Dribbling" data-lbl4="Physical">
@@ -1156,7 +1170,7 @@
 
         newsCloseBtn.addEventListener('click', () => closeSpecificModal(newsModal));
 
-        // --- ДЛЯ ИГРОКОВ (С ДИНАМИЧЕСКИМИ ШКАЛАМИ И ФИЗИЧЕСКИМИ ПАРАМЕТРАМИ) ---
+        // --- ДЛЯ ИГРОКОВ ---
         const playerCards = document.querySelectorAll('.player-card');
         const playerModal = document.getElementById('player-modal');
         const playerCloseBtn = document.getElementById('player-modal-close-btn');
@@ -1166,20 +1180,17 @@
         const pModalPosition = document.getElementById('p-modal-position');
         const pModalName = document.getElementById('p-modal-name');
         
-        // Элементы физических параметров
         const pModalHeight = document.getElementById('p-modal-height');
         const pModalWeight = document.getElementById('p-modal-weight');
         const pModalFoot = document.getElementById('p-modal-foot');
 
         const pModalBioContent = document.getElementById('p-modal-bio-content');
 
-        // Элементы статистики игрока
         const statApps = document.getElementById('stat-apps');
         const statGoals = document.getElementById('stat-goals');
         const statAssists = document.getElementById('stat-assists');
         const statRating = document.getElementById('stat-rating');
 
-        // Элементы характеристик и шкал
         const lblSkill1 = document.getElementById('lbl-skill1');
         const valSkill1 = document.getElementById('val-skill1');
         const barSkill1 = document.getElementById('bar-skill1');
@@ -1207,12 +1218,10 @@
                 const position = card.getAttribute('data-position');
                 const bioHTML = card.querySelector('.player-bio').innerHTML;
 
-                // Физические параметры
                 const height = card.getAttribute('data-height');
                 const weight = card.getAttribute('data-weight');
                 const foot = card.getAttribute('data-foot');
 
-                // Чтение статистики из data-атрибутов
                 const apps = card.getAttribute('data-apps');
                 const goals = card.getAttribute('data-goals');
                 const assists = card.getAttribute('data-assists');
@@ -1228,26 +1237,22 @@
                 const lbl3 = card.getAttribute('data-lbl3');
                 const lbl4 = card.getAttribute('data-lbl4');
 
-                // Заполнение модального окна текстом
                 pModalNumber.textContent = number;
                 pModalImage.setAttribute('src', imgUrl);
                 pModalPosition.textContent = position;
                 pModalName.innerHTML = `${firstName} <br> ${lastName}`;
                 
-                // Физические характеристики
                 pModalHeight.textContent = height;
                 pModalWeight.textContent = weight;
                 pModalFoot.textContent = foot;
 
                 pModalBioContent.innerHTML = bioHTML;
 
-                // Заполнение плиток статистики
                 statApps.textContent = apps;
                 statGoals.textContent = goals;
                 statAssists.textContent = assists;
                 statRating.textContent = rating;
 
-                // Заполнение названий и числовых значений шкал
                 lblSkill1.textContent = lbl1;
                 valSkill1.textContent = stat1;
                 
@@ -1260,17 +1265,14 @@
                 lblSkill4.textContent = lbl4;
                 valSkill4.textContent = stat4;
 
-                // Обнуляем ширину перед заполнением, чтобы анимация сработала плавно
                 barSkill1.style.width = '0%';
                 barSkill2.style.width = '0%';
                 barSkill3.style.width = '0%';
                 barSkill4.style.width = '0%';
 
-                // Показываем окно
                 playerModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
 
-                // Заполняем шкалы с задержкой для плавности анимации
                 setTimeout(() => {
                     barSkill1.style.width = stat1 + '%';
                     barSkill2.style.width = stat2 + '%';
@@ -1282,7 +1284,6 @@
 
         playerCloseBtn.addEventListener('click', () => closeSpecificModal(playerModal));
 
-        // --- ОБЩИЕ ФУНКЦИИ ЗАКРЫТИЯ ---
         function closeSpecificModal(modal) {
             modal.classList.remove('active');
             document.body.style.overflow = '';
